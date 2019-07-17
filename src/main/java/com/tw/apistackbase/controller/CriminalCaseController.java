@@ -23,4 +23,9 @@ public class CriminalCaseController {
     return repository.findAll();
   }
 
+  public List<CriminalCase> findCriminalCasesByCriminalName(String name) {
+    return repository.findByCriminalName(name);
+  }
+
+
 }
