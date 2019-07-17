@@ -24,7 +24,7 @@ public class CriminalCaseController {
   }
 
   public List<CriminalCase> findCriminalCasesByCriminalName(String name) {
-    return repository.findByCriminalName(name);
+    return repository.findByCaseName(name);
   }
 
   public void deleteByCriminalId(int criminalId) {

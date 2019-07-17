@@ -15,6 +15,9 @@ public class CriminalCase {
   @Column(nullable = false)
   private long occurredTime;
 
+  @OneToOne
+  private CaseInformation caseInformation;
+
   public int getId() {
     return id;
   }
@@ -33,5 +36,17 @@ public class CriminalCase {
 
   public void setOccurredTime(long occurredTime) {
     this.occurredTime = occurredTime;
+  }
+
+  public long getOccurredTime() {
+    return occurredTime;
+  }
+
+  public CaseInformation getCaseInformation() {
+    return caseInformation;
+  }
+
+  public void setCaseInformation(CaseInformation caseInformation) {
+    this.caseInformation = caseInformation;
   }
 }
