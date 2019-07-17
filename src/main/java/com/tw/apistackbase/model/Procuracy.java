@@ -1,6 +1,7 @@
 package com.tw.apistackbase.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
@@ -12,6 +13,9 @@ public class Procuracy {
 
   @Column(nullable = false,length = 50)
   private String procuracyName;
+
+  @OneToMany(mappedBy = "procuracy")
+  private List<CriminalCase> criminalCases;
 
   public int getId() {
     return id;
@@ -27,5 +31,13 @@ public class Procuracy {
 
   public void setProcuracyName(String procuracyName) {
     this.procuracyName = procuracyName;
+  }
+
+  public List<CriminalCase> getCriminalCases() {
+    return criminalCases;
+  }
+
+  public void setCriminalCases(List<CriminalCase> criminalCases) {
+    this.criminalCases = criminalCases;
   }
 }
