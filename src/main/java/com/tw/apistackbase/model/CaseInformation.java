@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class CaseInformation {
   @Id
   @GeneratedValue
-  private int id;
+  private Integer id;
 
   @Column(nullable = false)
   private String objective;

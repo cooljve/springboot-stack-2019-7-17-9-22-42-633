@@ -9,7 +9,7 @@ public class Procuracy {
   @Id
   @GeneratedValue
   @Column(unique = true)
-  private int id;
+  private Integer id;
 
   @Column(nullable = false,length = 50)
   private String procuracyName;
