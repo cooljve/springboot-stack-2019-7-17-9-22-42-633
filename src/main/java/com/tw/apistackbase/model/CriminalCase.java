@@ -15,7 +15,7 @@ public class CriminalCase {
   @Column(nullable = false)
   private long occurredTime;
 
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   private CaseInformation caseInformation;
 
   public int getId() {
