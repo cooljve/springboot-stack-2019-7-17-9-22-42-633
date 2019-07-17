@@ -13,7 +13,7 @@ public class CriminalCase {
   private String caseName;
 
   @Column(nullable = false)
-  private long occurredTime;
+  private Long occurredTime;
 
   @OneToOne(cascade = CascadeType.ALL)
   private CaseInformation caseInformation;
@@ -52,5 +52,17 @@ public class CriminalCase {
 
   public void setCaseInformation(CaseInformation caseInformation) {
     this.caseInformation = caseInformation;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public Procuracy getProcuracy() {
+    return procuracy;
+  }
+
+  public void setProcuracy(Procuracy procuracy) {
+    this.procuracy = procuracy;
   }
 }
