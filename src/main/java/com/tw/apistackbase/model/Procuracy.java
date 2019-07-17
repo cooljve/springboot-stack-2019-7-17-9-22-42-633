@@ -17,6 +17,10 @@ public class Procuracy {
   @OneToMany(mappedBy = "procuracy")
   private List<CriminalCase> criminalCases;
 
+  @OneToMany(mappedBy = "procuracy")
+  private List<Procurator> procurators;
+
+
   public int getId() {
     return id;
   }
@@ -39,5 +43,13 @@ public class Procuracy {
 
   public void setCriminalCases(List<CriminalCase> criminalCases) {
     this.criminalCases = criminalCases;
+  }
+
+  public List<Procurator> getProcurators() {
+    return procurators;
+  }
+
+  public void setProcurators(List<Procurator> procurators) {
+    this.procurators = procurators;
   }
 }
