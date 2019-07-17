@@ -27,5 +27,9 @@ public class CriminalCaseController {
     return repository.findByCriminalName(name);
   }
 
+  public void deleteByCriminalId(int criminalId) {
+    repository.deleteById(criminalId);
+  }
+
 
 }
