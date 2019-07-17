@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class CaseInfomation {
+public class CaseInformation {
   @Id
   @GeneratedValue
   private int id;
