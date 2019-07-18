@@ -78,7 +78,7 @@ class CriminalCaseTest {
   }
 
   @Test
-  void should_find_all_cases_order_by_occurredTime(){
+  void should_find_all_cases_order_by_occurredTime() {
     Procuracy procuracy1 = new Procuracy();
     procuracy1.setProcuracyName("Q");
     Procuracy procuracy2 = new Procuracy();
@@ -91,7 +91,7 @@ class CriminalCaseTest {
     criminalCase1.setProcuracy(procuracy1);
     CriminalCase criminalCase2 = new CriminalCase();
     criminalCase2.setCaseName("qq");
-    criminalCase2.setOccurredTime(new Date().getTime()-10);
+    criminalCase2.setOccurredTime(new Date().getTime() - 10);
     criminalCase2.setProcuracy(new Procuracy());
     criminalCase2.setProcuracy(procuracy2);
     criminalCaseRepository.save(criminalCase1);
@@ -104,5 +104,31 @@ class CriminalCaseTest {
     assertThat(criminalCases.get(1)).isEqualTo(criminalCase1);
   }
 
+  @Test
+  void should_delete_case_by_caseId() {
+    Procuracy procuracy1 = new Procuracy();
+    procuracy1.setProcuracyName("Q");
+    Procuracy procuracy2 = new Procuracy();
+    procuracy2.setProcuracyName("E");
+    procuracyRepository.save(procuracy1);
+    procuracyRepository.save(procuracy2);
+    CriminalCase criminalCase1 = new CriminalCase();
+    criminalCase1.setCaseName("qq");
+    criminalCase1.setOccurredTime(new Date().getTime());
+    criminalCase1.setProcuracy(procuracy1);
+    CriminalCase criminalCase2 = new CriminalCase();
+    criminalCase2.setCaseName("ee");
+    criminalCase2.setOccurredTime(new Date().getTime() - 10);
+    criminalCase2.setProcuracy(new Procuracy());
+    criminalCase2.setProcuracy(procuracy2);
+    criminalCaseRepository.save(criminalCase1);
+    criminalCaseRepository.save(criminalCase2);
+
+    criminalCaseRepository.deleteById(criminalCase1.getId());
+    List<CriminalCase> criminalCases = criminalCaseRepository.findAll();
+
+    assertThat(criminalCases.size()).isEqualTo(1);
+    assertThat(criminalCases.get(0).getCaseName()).isEqualTo("ee");
+  }
 
 }
