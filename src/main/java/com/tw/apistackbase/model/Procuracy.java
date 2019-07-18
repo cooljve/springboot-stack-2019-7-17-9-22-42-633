@@ -14,10 +14,8 @@ public class Procuracy {
   @Column(nullable = false,length = 50)
   private String procuracyName;
 
-  @OneToMany(mappedBy = "procuracy")
-  private List<CriminalCase> criminalCases;
-
-  @OneToMany(mappedBy = "procuracy")
+  @OneToMany
+  @JoinColumn(name = "procurator_id")
   private List<Procurator> procurators;
 
 
@@ -35,14 +33,6 @@ public class Procuracy {
 
   public void setProcuracyName(String procuracyName) {
     this.procuracyName = procuracyName;
-  }
-
-  public List<CriminalCase> getCriminalCases() {
-    return criminalCases;
-  }
-
-  public void setCriminalCases(List<CriminalCase> criminalCases) {
-    this.criminalCases = criminalCases;
   }
 
   public List<Procurator> getProcurators() {

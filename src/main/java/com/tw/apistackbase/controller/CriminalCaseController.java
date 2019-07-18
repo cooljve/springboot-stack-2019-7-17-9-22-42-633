@@ -23,7 +23,7 @@ public class CriminalCaseController {
 
   @GetMapping
   public List<CriminalCase> findAllCriminalCases() {
-    return repository.findAll();
+    return repository.findAllByOrderByOccurredTime();
   }
 
   @GetMapping(value = "{criminalName}")

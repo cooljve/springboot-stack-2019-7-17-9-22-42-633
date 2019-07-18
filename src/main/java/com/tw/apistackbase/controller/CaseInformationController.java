@@ -13,7 +13,6 @@ public class CaseInformationController {
   @Autowired
   private CaseInformationRepository repository;
 
-
   public CaseInformation findCaseById(int caseId) {
     Optional<CaseInformation> caseInformation = repository.findById(caseId);
     return caseInformation.orElse(null);

@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface CriminalCaseRepository extends JpaRepository<CriminalCase,Integer> {
   List<CriminalCase> findByCaseName(String name);
+  List<CriminalCase> findAllByOrderByOccurredTime();
 }

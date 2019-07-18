@@ -12,10 +12,6 @@ public class Procurator {
   @Column(nullable = false)
   private String name;
 
-  @ManyToOne
-  @JoinColumn(name ="procuracy_id")
-  private Procuracy procuracy;
-
   public Integer getId() {
     return id;
   }
@@ -32,11 +28,4 @@ public class Procurator {
     this.name = name;
   }
 
-  public Procuracy getProcuracy() {
-    return procuracy;
-  }
-
-  public void setProcuracy(Procuracy procuracy) {
-    this.procuracy = procuracy;
-  }
 }
