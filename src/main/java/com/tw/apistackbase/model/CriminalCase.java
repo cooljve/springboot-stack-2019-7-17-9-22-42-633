@@ -18,7 +18,7 @@ public class CriminalCase {
   @OneToOne(cascade = CascadeType.ALL)
   private CaseInformation caseInformation;
 
-  @ManyToOne(optional = false)
+  @ManyToOne(optional = false,cascade = CascadeType.ALL)
   @JoinColumn(name = "procuracy_id")
   private Procuracy procuracy;
 

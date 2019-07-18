@@ -20,8 +20,6 @@ class CriminalCaseTest {
 
   @Autowired
   private CriminalCaseRepository criminalCaseRepository;
-  @Autowired
-  private ProcuracyRepository procuracyRepository;
 
   @Test
   void should_save_criminal_case() throws Exception {
@@ -36,12 +34,9 @@ class CriminalCaseTest {
 
   @Test
   void should_find_criminalCase_by_id() throws Exception {
-    CriminalCase criminalCase1 = new CriminalCase();
-    criminalCase1.setCaseName("qq");
-    criminalCase1.setOccurredTime(new Date().getTime());
-    CriminalCase criminalCase2 = new CriminalCase();
-    criminalCase2.setCaseName("ee");
-    criminalCase2.setOccurredTime(new Date().getTime());
+    Procuracy procuracy = expectProcuracy();
+    CriminalCase criminalCase1 = expectCriminalCaseByName("qq",procuracy);
+    CriminalCase criminalCase2 = expectCriminalCaseByName("ee",procuracy);
     criminalCaseRepository.save(criminalCase1);
     criminalCaseRepository.save(criminalCase2);
 
@@ -52,21 +47,9 @@ class CriminalCaseTest {
 
   @Test
   void should_find_criminalCase_by_caseName() throws Exception {
-    Procuracy procuracy1 = new Procuracy();
-    procuracy1.setProcuracyName("Q");
-    Procuracy procuracy2 = new Procuracy();
-    procuracy2.setProcuracyName("E");
-    procuracyRepository.save(procuracy1);
-    procuracyRepository.save(procuracy2);
-    CriminalCase criminalCase1 = new CriminalCase();
-    criminalCase1.setCaseName("qq");
-    criminalCase1.setOccurredTime(new Date().getTime());
-    criminalCase1.setProcuracy(procuracy1);
-    CriminalCase criminalCase2 = new CriminalCase();
-    criminalCase2.setCaseName("qq");
-    criminalCase2.setOccurredTime(new Date().getTime());
-    criminalCase2.setProcuracy(new Procuracy());
-    criminalCase2.setProcuracy(procuracy2);
+    Procuracy procuracy = expectProcuracy();
+    CriminalCase criminalCase1 = expectCriminalCaseByName("qq",procuracy);
+    CriminalCase criminalCase2 = expectCriminalCaseByName("qq",procuracy);
     criminalCaseRepository.save(criminalCase1);
     criminalCaseRepository.save(criminalCase2);
 
@@ -79,21 +62,10 @@ class CriminalCaseTest {
 
   @Test
   void should_find_all_cases_order_by_occurredTime() {
-    Procuracy procuracy1 = new Procuracy();
-    procuracy1.setProcuracyName("Q");
-    Procuracy procuracy2 = new Procuracy();
-    procuracy2.setProcuracyName("E");
-    procuracyRepository.save(procuracy1);
-    procuracyRepository.save(procuracy2);
-    CriminalCase criminalCase1 = new CriminalCase();
-    criminalCase1.setCaseName("qq");
-    criminalCase1.setOccurredTime(new Date().getTime());
-    criminalCase1.setProcuracy(procuracy1);
-    CriminalCase criminalCase2 = new CriminalCase();
-    criminalCase2.setCaseName("qq");
-    criminalCase2.setOccurredTime(new Date().getTime() - 10);
-    criminalCase2.setProcuracy(new Procuracy());
-    criminalCase2.setProcuracy(procuracy2);
+    Procuracy procuracy = expectProcuracy();
+    CriminalCase criminalCase1 = expectCriminalCaseByName("qq",procuracy);
+    CriminalCase criminalCase2 = expectCriminalCaseByName("ee",procuracy);
+    criminalCase2.setOccurredTime(new Date().getTime()-10);
     criminalCaseRepository.save(criminalCase1);
     criminalCaseRepository.save(criminalCase2);
 
@@ -106,21 +78,9 @@ class CriminalCaseTest {
 
   @Test
   void should_delete_case_by_caseId() {
-    Procuracy procuracy1 = new Procuracy();
-    procuracy1.setProcuracyName("Q");
-    Procuracy procuracy2 = new Procuracy();
-    procuracy2.setProcuracyName("E");
-    procuracyRepository.save(procuracy1);
-    procuracyRepository.save(procuracy2);
-    CriminalCase criminalCase1 = new CriminalCase();
-    criminalCase1.setCaseName("qq");
-    criminalCase1.setOccurredTime(new Date().getTime());
-    criminalCase1.setProcuracy(procuracy1);
-    CriminalCase criminalCase2 = new CriminalCase();
-    criminalCase2.setCaseName("ee");
-    criminalCase2.setOccurredTime(new Date().getTime() - 10);
-    criminalCase2.setProcuracy(new Procuracy());
-    criminalCase2.setProcuracy(procuracy2);
+    Procuracy procuracy = expectProcuracy();
+    CriminalCase criminalCase1 = expectCriminalCaseByName("qq",procuracy);
+    CriminalCase criminalCase2 = expectCriminalCaseByName("ee",procuracy);
     criminalCaseRepository.save(criminalCase1);
     criminalCaseRepository.save(criminalCase2);
 
@@ -129,6 +89,20 @@ class CriminalCaseTest {
 
     assertThat(criminalCases.size()).isEqualTo(1);
     assertThat(criminalCases.get(0).getCaseName()).isEqualTo("ee");
+  }
+
+  private Procuracy expectProcuracy() {
+    Procuracy procuracy = new Procuracy();
+    procuracy.setProcuracyName("Q");
+    return procuracy;
+  }
+
+  CriminalCase expectCriminalCaseByName(String caseName,Procuracy procuracy) {
+    CriminalCase criminalCase = new CriminalCase();
+    criminalCase.setCaseName(caseName);
+    criminalCase.setProcuracy(procuracy);
+    criminalCase.setOccurredTime(new Date().getTime());
+    return criminalCase;
   }
 
 }
