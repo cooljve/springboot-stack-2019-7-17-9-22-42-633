@@ -7,7 +7,7 @@ import java.util.List;
 @Table
 public class Procuracy {
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(unique = true)
   private Integer id;
 

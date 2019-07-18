@@ -39,6 +39,7 @@ class CriminalCaseTest {
   void should_add_criminal_information_when_add_criminal_case(){
     CaseInformation information = new CaseInformation();
     information.setObjective("abc");
+    information.setSubjectivity("ABC");
     CriminalCase criminalCase = new CriminalCase();
     criminalCase.setCaseName("qq");
     criminalCase.setOccurredTime(new Date().getTime());
