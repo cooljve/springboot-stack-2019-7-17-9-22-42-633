@@ -14,7 +14,7 @@ spring:
     driver-class-name: org.h2.Driver
     database-platform: org.hibernate.dialect.H2Dialect
     username: root
-    password: 123456
+    password:
     jpa:
     # create 每次加载hibernate删除表重新建立
     # create-drop 每次加载hibernate根据model生产表，sessionFactory关闭之后删除表
