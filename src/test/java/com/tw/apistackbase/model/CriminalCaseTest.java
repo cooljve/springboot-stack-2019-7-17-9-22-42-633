@@ -1,7 +1,6 @@
 package com.tw.apistackbase.model;
 
 import com.tw.apistackbase.repository.CriminalCaseRepository;
-import com.tw.apistackbase.repository.ProcuracyRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ class CriminalCaseTest {
   private CriminalCaseRepository criminalCaseRepository;
 
   @Test
-  void should_save_criminal_case() throws Exception {
+  void should_save_criminal_case(){
     CriminalCase criminalCase = new CriminalCase();
     criminalCase.setCaseName("qq");
     criminalCase.setOccurredTime(new Date().getTime());
@@ -33,7 +32,7 @@ class CriminalCaseTest {
   }
 
   @Test
-  void should_find_criminalCase_by_id() throws Exception {
+  void should_find_criminalCase_by_id() {
     Procuracy procuracy = expectProcuracy();
     CriminalCase criminalCase1 = expectCriminalCaseByName("qq",procuracy);
     CriminalCase criminalCase2 = expectCriminalCaseByName("ee",procuracy);
@@ -46,7 +45,7 @@ class CriminalCaseTest {
   }
 
   @Test
-  void should_find_criminalCase_by_caseName() throws Exception {
+  void should_find_criminalCase_by_caseName() {
     Procuracy procuracy = expectProcuracy();
     CriminalCase criminalCase1 = expectCriminalCaseByName("qq",procuracy);
     CriminalCase criminalCase2 = expectCriminalCaseByName("qq",procuracy);
