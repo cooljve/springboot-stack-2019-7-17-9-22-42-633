@@ -22,11 +22,11 @@ public class CriminalCase {
   @JoinColumn(name = "procuracy_id")
   private Procuracy procuracy;
 
-  public int getId() {
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -38,12 +38,12 @@ public class CriminalCase {
     this.caseName = caseName;
   }
 
-  public void setOccurredTime(long occurredTime) {
-    this.occurredTime = occurredTime;
+  public Long getOccurredTime() {
+    return occurredTime;
   }
 
-  public long getOccurredTime() {
-    return occurredTime;
+  public void setOccurredTime(Long occurredTime) {
+    this.occurredTime = occurredTime;
   }
 
   public CaseInformation getCaseInformation() {
@@ -52,10 +52,6 @@ public class CriminalCase {
 
   public void setCaseInformation(CaseInformation caseInformation) {
     this.caseInformation = caseInformation;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
   }
 
   public Procuracy getProcuracy() {
