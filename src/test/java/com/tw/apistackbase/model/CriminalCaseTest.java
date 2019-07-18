@@ -1,5 +1,6 @@
 package com.tw.apistackbase.model;
 
+import com.tw.apistackbase.repository.CaseInformationRepository;
 import com.tw.apistackbase.repository.CriminalCaseRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
+import static org.junit.Assert.assertNotNull;
 
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
@@ -19,6 +22,9 @@ class CriminalCaseTest {
 
   @Autowired
   private CriminalCaseRepository criminalCaseRepository;
+
+  @Autowired
+  private CaseInformationRepository informationRepository;
 
   @Test
   void should_save_criminal_case(){
@@ -29,6 +35,21 @@ class CriminalCaseTest {
     CriminalCase fetchedCase = criminalCaseRepository.save(criminalCase);
 
     assertThat(fetchedCase).isEqualTo(criminalCase);
+  }
+
+  @Test
+  void should_add_criminal_information_when_add_criminal_case(){
+    CaseInformation information = new CaseInformation();
+    information.setObjective("abc");
+    CriminalCase criminalCase = new CriminalCase();
+    criminalCase.setCaseName("qq");
+    criminalCase.setOccurredTime(new Date().getTime());
+    criminalCase.setCaseInformation(information);
+    criminalCaseRepository.save(criminalCase);
+
+    Optional<CaseInformation> fetchedInformation = informationRepository.findById(information.getId());
+
+    assertThat(fetchedInformation.orElse(null).getObjective()).isEqualTo("abc");
   }
 
   @Test
